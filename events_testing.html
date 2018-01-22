@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title> Date difference calculations </title>
+    
+    <head>
+        <script type="text/javascript">
+            function writeOptions(startNumber, endNumber){
+                var optionCounter;
+                
+                //console.log(startNumber, endNumber);
+                for(optionCounter=startNumber; optionCounter<endNumber; optionCounter++){
+                    document.write("<option value="+optionCounter+">"+optionCounter);
+                }
+            }
+            
+            function writeMonthOptions(){
+                var monthCounter;
+                var theDate = new Date();
+                var theMonth;
+                
+                for(monthCounter=0; monthCounter<12; monthCounter++){
+                    theDate.setMonth(monthCounter);
+                    theMonth = theDate.toString().substr(4,3);
+                    document.write("<option value="+theMonth+">"+theMonth);
+                }
+            }
+            
+            function recalcDiffDate(){
+                var myForm = document.form1;
+                
+                var firstDay = myForm.firstDay.options[myForm.firstDay.selectedIndex].value;
+                var secondDay = myForm.secondDay.options[myForm.secondDay.selectedIndex].value;
+                
+                
+                var firstMonth = myForm.firstMonth.options[myForm.firstMonth.selectedIndex].value;
+                var secondMonth = myForm.secondMonth.options[myForm.secondMonth.selectedIndex].value;
+                
+                var firstYear = myForm.firstYear.options[myForm.firstYear.selectedIndex].value;
+                var secondYear = myForm.secondYear.options[myForm.secondYear.selectedIndex].value;
+                
+                var firstDate = new Date(firstDay + " " + firstMonth + " " + firstYear);
+                var secondDate = new Date(secondDay + " " + secondMonth + " " + secondYear);
+                
+                var diffDate = firstDate.valueOf() - secondDate.valueOf();
+                diffDate = Math.floor(Math.abs((((diffDate/1000)/60)/60)/24));
+                
+                document.form1.writeHere.innerHTML = "The Date difference is: "+diffDate;
+            }
+            
+            function window_onload(){
+                var myForm = document.form1;
+                
+                var myDate = new Date();
+                
+                myForm.firstDay.options[myDate.getDay()-1].selected = true;
+                myForm.secondDay.options[myDate.getDay()-1].selected = true;
+                
+                myForm.firstMonth.options[myDate.getMonth()].selected = true;
+                myForm.secondMonth.options[myDate.getMonth()].selected = true;
+                
+                myForm.firstYear.options[myDate.getFullYear()-1970].selected = true;
+                myForm.secondYear.options[myDate.getFullYear()-1970].selected = true;
+            }
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <form action="" name="form1">
+            <p>
+                
+                First Date <br/>
+                <select name="firstDay" onchange="recalcDiffDate()">
+                    <script name="text/javascript">
+                        writeOptions(1, 31);
+                    </script>
+                </select>
+                
+                <select name="firstMonth" onchange="recalcDiffDate()">
+                    <script name="text/javascript">
+                        writeMonthOptions();    
+                    </script>
+                </select>
+                
+                <select name="firstYear" onchange="recalcDiffDate()">
+                    <script name="text/javascript">
+                        writeOptions(1970, 2020);
+                    </script>
+                </select>
+            </p>
+            
+            <p>
+                Second Date <br/>
+                
+                <select name="secondDay" onchange="recalcDiffDate()">
+                    <script>
+                        writeOptions(1, 31);
+                    </script>
+                </select>
+                
+                <select name="secondMonth" onchange="recalcDiffDate()">
+                    <script type="text/javascript">
+                        writeMonthOptions();
+                    </script>
+                </select>
+                
+                <select name="secondYear" onchange="recalcDiffDate()">
+                    <script type="text/javascript">
+                        writeOptions(1970, 2020);
+                    </script>
+                </select>
+            </p>
+            
+            
+            <textarea name="writeHere" rows="5" cols="10" onload="window_onload()">
+                
+            </textarea>            
+                        
+        </form>
+    </body>
+</html>
