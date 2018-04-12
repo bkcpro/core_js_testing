@@ -16,6 +16,8 @@
           return rArray;
         }
 
+
+
         // function calcSum(rArray){
         //   let sum = 0;
         //   for(let i of rArray){
@@ -65,11 +67,25 @@
               lStore = gStore;
             }
 
-            console.log(lStore);
+            return lStore;
 
         }
 
-        arrayToList([1,2,3,4]);
+        function listToArray(rList){
+          tList = rList;
+          rArray = [];
+          while(tList.rest!=null){
+            rArray.push(tList.value);
+            tList = tList.rest;
+          }
+
+          return rArray;
+        }
+
+        rList = arrayToList([1,2,3,4]);
+
+        console.log("Displaying list from array ", rList);
+        console.log("Displaying array from list ", listToArray(rList));
 
     </script>
   </head>
