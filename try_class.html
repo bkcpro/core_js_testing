@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+        function range(sNumber, lNumber, step = 1){
+          rArray = [];
+
+          for(let i=sNumber; i<=lNumber; i+=step){
+            rArray.push(i);
+          }
+
+          return rArray;
+        }
+
+        // function calcSum(rArray){
+        //   let sum = 0;
+        //   for(let i of rArray){
+        //     sum+=i;
+        //   }
+        //
+        //   return sum;
+        // }
+        //
+        // function reverseArray(rArray){
+        //   iArray = [];
+        //
+        //   for(let i = rArray.length - 1; i>=0; i--){
+        //     iArray.push(rArray[i]);
+        //   }
+        //
+        //   return iArray;
+        // }
+        //
+        // function reverseArrayInPlace(rArray){
+        //
+        //   for(let i=0; i<Math.ceil(rArray.length/2); i++){
+        //     let temp = rArray[i];
+        //     rArray[i] = rArray[rArray.length-1-i];
+        //     rArray[rArray.length-1-i] = temp;
+        //   }
+        //
+        //   return rArray;
+        // }
+
+        //
+        //
+        // let calcRange = range(1, 10);
+        // console.log(calcRange);
+        //
+        // console.log(reverseArray(calcRange));
+        // console.log(reverseArrayInPlace(calcRange));
+        // // console.log("The sum is ", calcSum(calcRange));
+
+
+        function arrayToList(numbers){
+
+            let lStore = {value: numbers[numbers.length-1], rest: null};
+
+            for(let i=numbers.length-2; i>-1; i--){
+              gStore = {value: numbers[i], rest: lStore};
+              lStore = gStore;
+            }
+
+            console.log(lStore);
+
+        }
+
+        arrayToList([1,2,3,4]);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
