@@ -58,6 +58,8 @@
         // // console.log("The sum is ", calcSum(calcRange));
 
 
+         // Array to list and list to array
+
         function arrayToList(numbers){
 
             let lStore = {value: numbers[numbers.length-1], rest: null};
@@ -77,15 +79,68 @@
           while(tList.rest!=null){
             rArray.push(tList.value);
             tList = tList.rest;
+          return rArray;
           }
 
-          return rArray;
         }
 
-        rList = arrayToList([1,2,3,4]);
+        rList = arrayToList([2,3,4,5]);
 
-        console.log("Displaying list from array ", rList);
-        console.log("Displaying array from list ", listToArray(rList));
+        // console.log("Displaying list from array ", rList);
+        // console.log("Displaying array from list ", listToArray(rList));
+
+        // prepend and ath functions
+
+        function prepend(elem, aList){
+          rList = {};
+          rList.value = elem;
+          rList.rest = aList;
+
+          return rList;
+        }
+
+        function nth(elem, aList){
+          let rList = aList;
+
+          console.log(aList);
+
+          for(let i=0; i<elem; i++){
+
+            if(rList!=null){
+              rList = rList.rest;
+            }
+
+
+          }
+
+          if(rList!=null) return rList.value;
+          else return undefined;
+
+          // if(!flg){
+          //   return rList.value;
+          // }
+          //
+          // else return undefined;
+
+        }
+
+        // console.log(prepend(30, rList));
+
+        console.log(rList);
+
+        console.log(nth(0, rList));
+        console.log(nth(1, rList));
+        console.log(nth(2, rList));
+        console.log(nth(3, rList));
+        console.log(nth(4, rList));
+         console.log(nth(5, rList));
+         console.log(nth(6, rList));
+
+
+
+
+
+
 
     </script>
   </head>
