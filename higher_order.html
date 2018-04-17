@@ -11,33 +11,49 @@
 
       <script type="text/javascript">
 
-          // function repeat(n, action){
-          //   for(let i=0; i<n; i++){
-          //     action(i);
-          //   }
-          // }
-          //
-          // /* Higher order functions */
-          //
-          // let labels = [];
-          //
-          // repeat(5, i => {
-          //   labels.push(`Unit ${i + 1}`);
-          // });
-          //
-          // console.log(labels);
+        function countBy(items, groupFunc){
+          let counts = [];
+          for(let item of items) {
+            name = groupFunc(item);
+            let known = counts.findIndex(c => c.name == name);
 
-
-          function average(array){
-              return array.reduce((a, b) => a+b) / array.length;
+            if(known == -1){
+              counts.push({name, count: 1});
+            }
+            else {
+              counts[known].count++;
+            }
           }
+          return counts;
+        }
 
-          console.log(Math.round(average(SCRIPTS.filter(s => s.living).map(s => s.year))));
+        function characterScript(code) {
+          for (let script of SCRIPTS) {
+            if (script.ranges.some(([from, to]) => {
+              return code >= from && code < to;
+            })) {
+              return script;
+            }
+          }
+          return null;
+        }
 
-          console.log(Math.round(average(SCRIPTS.filter(s => !s.living).map(s => s.year))));
+        function textScripts(text){
+          let scripts = countBy(text, char => {
+              let script = characterScript(char.codePointAt(0));
+              return script? script.name: "none";
+            }
+          ).filter(({name}) => name != "none");
 
+          let total = scripts.reduce( (n, {count}) => n + count, 0);
+          if(total == 0) return "No scripts found";
 
+          return scripts.map(({name, count}) => {
+            return `${Math.round(count * 100/ total)} ${name}`;
+          }).join(", ");
+        }
 
+        console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
 
     </script>
   </head>
