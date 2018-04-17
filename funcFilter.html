@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Testing filter function </title>
+
+    <script src = "scripts.js"></script>
+
+    <script type="text/javascript">
+
+
+        function filterScripts(array, test){
+          let passed = [];
+          for(let item of array){
+            if(test(item)){
+              passed.push(item);
+            }
+          }
+          return passed;
+        }
+
+        // console.log(filterScripts(SCRIPTS, script => script.living));
+
+        // Filter and map
+
+        function map(array, transform){
+          let mapped = [];
+          for(let element of array){
+            mapped.push(transform(element));
+          }
+          return mapped;
+        }
+
+        let rtl = filterScripts(SCRIPTS, s => s.direction == "rtl");
+        console.log(map(rtl, s => s.name));
+
+    </script>
+  </head>
+</html>

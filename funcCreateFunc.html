@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+      /* function creates another function */
+
+        function noisy(f){
+          return (...args) => {
+            console.log("calling with", args);
+            let result = f(...args);
+            console.log("called with", args, ", returned", result);
+            return result;
+          };
+        }
+
+        noisy(Math.min)(3,2,1);
+
+      /* function*/
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
