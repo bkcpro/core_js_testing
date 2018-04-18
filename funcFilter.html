@@ -43,20 +43,57 @@
         //
         // console.log(Math.round(average(SCRIPTS.filter(s => !s.living).map(s => s.year))));
 
-        function characterScript(code){
-          for(let script of SCRIPTS){
-            if(script.ranges.some(([from, to]) => {
-               return code >= from && code < to;
-            })){
-              return script;
-            }
-          }
-          return null;
+        // function characterScript(code){
+        //   for(let script of SCRIPTS){
+        //     if(script.ranges.some(([from, to]) => {
+        //        return code >= from && code < to;
+        //     })){
+        //       return script;
+        //     }
+        //   }
+        //   return null;
+        // }
+
+        // let unic = "hello".codePointAt(0);
+        // // console.log(unic);
+        // console.log(characterScript(121));
+
+        // console.log(["bhar", "g", "ava"].reduce((a, b) => a.concat(b)));  //flattening
+
+        // function looping(value, test, update, body){
+        //   debugger;
+        //   while(value < 20){
+        //       debugger;
+        //       if(test(value)) body(value);
+        //       else return null;
+        //       value = update(value);
+        //     }
+
+            // for(value; test(value); value = update(value)){
+            //   debugger;
+            //   body(value);
+            // }
+
+          // }
+
+
+        // looping(3, a => a < 10, a => a + 1, console.log);
+
+
+        /* Implementing every function */
+
+        function every(array, test){
+          // for(let i of array){
+          //   if(test(i)) return true;
+          //   else return false;
+          // }
+
+          //alternative way
+
+          return !(array.some(test));
         }
 
-         let unic = "hello".codePointAt(0);
-        // console.log(unic);
-        console.log(characterScript("hello"));
+        console.log(every([3, 6, 7], a => a > 5));
 
     </script>
   </head>
