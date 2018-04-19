@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+        function arrowFuncThis(){
+            console.log(this.coords.map(n => n / this.length));
+        }
+
+        arrowFuncThis.call({coords: [1, 3, 5], length: 5});
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
