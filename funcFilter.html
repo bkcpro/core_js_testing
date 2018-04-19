@@ -82,18 +82,65 @@
 
         /* Implementing every function */
 
-        function every(array, test){
-          // for(let i of array){
-          //   if(test(i)) return true;
-          //   else return false;
-          // }
+        // function every(array, test){
+        //   // for(let i of array){
+        //   //   if(test(i)) return true;
+        //   //   else return false;
+        //   // }
+        //
+        //   //alternative way
+        //
+        //   return !(array.some(test));
+        // }
+        //
+        // console.log(every([3, 6, 7], a => a > 5));
 
-          //alternative way
+        /* decide writing direction */
 
-          return !(array.some(test));
+        let  maxCount = [["ltr", 0], ["ttb", 0], ["rtl", 0]];
+
+        function countMajorityDirection(items){
+
+          // find and add direction to items
+
+          // findAddDir(items);
+
+
+          for(let item of items){
+
+              let uni = item.codePointAt(0);
+
+              for(let script of SCRIPTS){
+                if(script.ranges.some( ([from, to]) => {
+                  return uni >= from && uni < to;
+                })){
+                    switch(script.direction){
+                      case "ltr":
+                        console.log(uni, item, script.direction);
+                        maxCount[0][1]++;
+                        break;
+                      case "ttb":
+                        console.log(uni, item, script.direction);
+                        maxCount[1][1]++;
+                        break;
+                      case "rtl":
+                        console.log(uni, item, script.direction);
+                        maxCount[2][1]++;
+                        break;
+                    }
+                }
+            }
+          }
+
+
+          return maxCount[maxCount.findIndex(elem => {
+            return elem[1] == Math.max(maxCount[0][1], maxCount[1][1], maxCount[2][1]);
+          }) ][0];
         }
 
-        console.log(every([3, 6, 7], a => a > 5));
+
+        console.log(countMajorityDirection(["كل", "ᠨᠭ", "ꡀꡁ"]));
+        // console.log(SCRIPTS);
 
     </script>
   </head>
