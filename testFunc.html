@@ -6,9 +6,48 @@
 
     <script type="text/javascript">
 
-      arr = [["abc", 0], ["sbd", 0], ["asd", 0]];
+        // console.log(Object.getPrototypeOf(function lol(){}));
+        //
+        // console.log(Object.getPrototypeOf(Function.prototype) );
 
-      console.log(arr);
+        // let objectEx = {
+        //   property1: "Car"
+        // }
+        //
+        // console.log(objectEx.toString());
+        //
+        // console.log(Object.toString());
+
+        // console.log(Object.getPrototypeOf(Math));
+
+        // let protoRabbit = {
+        //   speak(line){
+        //       console.log(`The ${this.type} rabbit says ${line}`);
+        //   }
+        // }
+        //
+        //
+        // let killerRabbit = Object.create(protoRabbit);
+        // killerRabbit.type = "killer";
+        // killerRabbit.speak("SKREE");
+
+        // function func(){}
+        //
+        // console.log(Object.getPrototypeOf(func.prototype));
+
+        let ages = new Map();
+        ages.set("Ben", 29);
+        ages.set("Bhar", 27);
+
+        console.log(`Ben is ${ages["Ben"]}`);
+        console.log(`Is Julia's age known? ${ages.has["Julia"]}`);
+
+        console.log({x: 1}.hasOwnProperty("x"));
+        console.log("toString" in {x: 1});
+        console.log({x: 1}.hasOwnProperty("toString"));
+
+
+
     </script>
   </head>
   <body>
