@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+        class vector{
+          constructor(x, y){
+            this.x = x;
+            this.y = y;
+          }
+
+          get length(){
+            return this.y - this.x;
+          }
+
+          plus(vecOp){
+            let res = new vector();
+            res.x = this.x + vecOp.x;
+            res.y = this.y + vecOp.y;
+            return res;
+          }
+
+          minus(vecOp){
+            let res = new vector();
+            res.x = this.x - vecOp.x;
+            res.y = this.y - vecOp.y;
+            return res;
+          }
+        }
+
+
+        let vecA = new vector(10, 12);
+        console.log(vecA.length);
+        console.log(vecA.minus(new vector(1, 2)));
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

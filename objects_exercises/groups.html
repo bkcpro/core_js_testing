@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script>
+
+      class group{
+        constructor(){
+          this.grp = [];
+        }
+
+        add(value){
+          if(!this.has(value)) this.grp.push(value);
+        }
+
+        delete(value){
+          let indx = this.grp.indexOf(value);
+          if(indx > -1) this.grp.splice(indx, 1);
+        }
+
+        has(value){
+          return this.grp.find(elem => {
+            if(elem == value) return 1;
+            else return 0;
+          });
+        }
+
+        static from(arr){
+          let newGrp = new group();
+
+          for(let elem of arr){
+            newGrp.grp.push(elem);
+          }
+
+          return newGrp;
+        }
+      }
+
+
+      let grp = new group();
+
+
+      grp.add(1); grp.add(2); grp.add(3);
+      let nGrp = grp.grp.slice(0,);
+
+      console.log(nGrp);
+
+      grp.delete(2);
+      console.log(grp);
+
+      console.log(group.from([2,3,4]));
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
