@@ -38,6 +38,22 @@
         }
       }
 
+      //Iterable interface
+
+      class grpIterator{
+        constructor(group){
+            this.grp = group.grp;
+            this.x = 0;
+        }
+
+        next(){
+
+          if(this.x == this.grp.length) return {done: true};
+
+          return {value: this.grp[this.x++], done: false}
+        }
+      }
+
 
       let grp = new group();
 
@@ -51,6 +67,16 @@
       console.log(grp);
 
       console.log(group.from([2,3,4]));
+
+      console.log("Printing group elements using iterator interface \n");
+
+      let grpItr = new grpIterator(grp);
+      let i=0;
+
+      while(i < grp.grp.length){
+        console.log(grpItr.next());
+        i++;
+      }
 
     </script>
   </head>
