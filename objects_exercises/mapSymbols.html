@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+        let names = new Map();
+
+        names.set("bhargava", "kunchanapalli");
+        names.set("java", "script");
+        names.set("proto", "type");
+
+        const hasOwnProperty = Symbol("newProp");
+        names.prototype. = function(){console.log("this is a different hasOwnProperty");}
+
+        console.log("123");
+        console.log(names.hasOwnProperty);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
