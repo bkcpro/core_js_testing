@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type='text/javascript'>
+
+        const roads = [
+          "Alice's House-Bob's House", "Alice's House-Cabin",
+          "Alice's House-Post Office", "Bob's House-Town Hall",
+          "Daria's House-Ernie's House", "Daria's House-Town Hall",
+          "Ernie's House-Grete's House", "Grete's House-Farm",
+          "Grete's House-Shop", "Marketplace-Farm",
+          "Marketplace-Post Office", "Marketplace-Shop",
+          "Marketplace-Town Hall", "Shop-Town Hall"
+        ];
+
+
+      // Can also be implemented using map
+
+      function makeGraph(roads){
+        let graph = new Map();
+
+        for(let connection of roads){
+          let firstPart = connection.split("-")[0];
+          if(!graph.has(firstPart)) {
+            graph.set(firstPart, []);
+            graph.get(firstPart).push(connection.split("-")[1]);
+          }
+          else continue; // A node which is not yet added, gets added above, skips this statement and executes below statements
+
+          let fIndex = roads.indexOf(connection);
+          for(let i = fIndex+1; i<roads.length; i++){
+            if(firstPart == roads[i].split("-")[0]){
+              graph.get(firstPart).push(roads[i].split("-")[1]);
+            }
+          }
+        }
+
+        //Adding edges which lead from secondPart to firstPart
+
+        let prevMap = new Map();
+        for(let key of graph.keys()){
+          let arr = graph.get(key).slice();
+          prevMap.set(key, arr);
+        }
+
+        for(let [from, places] of graph.entries()){
+          for(let eachPlace of places){
+            if(!prevMap.has(eachPlace)) {
+
+              prevMap.set(eachPlace, []);
+              prevMap.get(eachPlace).push(from);
+              // console.log("jA", eachPlace, prevMap.get(eachPlace));
+            }
+
+            else if(!(from in prevMap.get(eachPlace))) {
+
+              prevMap.get(eachPlace).push(from);
+              // console.log("aE", eachPlace, prevMap.get(eachPlace));
+            }
+          }
+        }
+
+        return prevMap;
+      }
+
+      const roadGraph = makeGraph(roads);
+      console.log(roadGraph);
+
+      class robotDeliversPackages{
+        constructor(placeOfRobot, parcels){
+          this.placeOfRobot = placeOfRobot;
+          this.parcels = parcels;
+        }
+
+        generateRobotState(empStr){
+          let parcelsLeft = this.parcels.slice();
+
+          for(let parcel of this.parcels){
+
+            // console.log(roadGraph.get(this.placeOfRobot).includes(parcel.place));
+            // console.log(this.placeOfRobot == parcel.place);
+            // console.log(roadGraph.get(parcel.place).includes(parcel.address));
+
+
+            if(!((roadGraph.get(this.placeOfRobot).includes(parcel.place)) || (this.placeOfRobot == parcel.place)) || !(roadGraph.get(parcel.place).includes(parcel.address))){
+              // console.log(`This {${parcel.place}, ${parcel.address}} can't be delivered`);
+            }
+
+            else{
+              console.log(`Robot picked up parcel at ${parcel.place} and delivered at ${parcel.address}`);
+              this.placeOfRobot = parcel.address;
+              console.log(`The Robot is now at ${this.placeOfRobot}`);
+              parcelsLeft = parcelsLeft.filter(p => p!=parcel);
+            }
+          }
+
+          const addParcelsLeft = (parcelsLeft) => {
+            for(let i of parcelsLeft) empStr += `{${i.place}, ${i.address}} \n`;
+            return empStr;
+          };
+
+          return addParcelsLeft(parcelsLeft);
+        }
+
+      }
+
+      let statusOfRobot = new robotDeliversPackages(
+        "Post Office",
+         [{place: "Post Office", address: "Alice's House"},
+          {place: "Bob's House", address: "Town Hall"},
+          {place: "Shop", address: "Ernie's House"},
+          {place: "Marketplace", address: "Grete's House"}
+         ]);
+
+      console.log(`Following parcels weren't delivered: ` + statusOfRobot.generateRobotState(``));
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
