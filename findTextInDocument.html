@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+  </head>
+  <body>
+
+    <p>
+      <a href="www.google.com"></a>
+      <div class="hello">
+        <p>
+          <span>Say ello</span>
+        </p>
+      </div>
+    </p>
+  </body>
+
+
+  <script type="text/javascript">
+
+    function findNodeText(node, string){
+
+      if(node.nodeType == document.ELEMENT_NODE){
+
+        for(let i=0; i < node.childNodes.length; i++){
+
+          if(node.tagName == "SPAN"){
+            console.log(node.childNodes[0].nodeType, node.childNodes[0].nodeValue);
+          }
+
+          if(node.childNodes[i].nodeType == document.ELEMENT_NODE){
+            return true;
+          }
+        }
+        return false;
+      }
+      else{
+
+        if(node.nodeType == document.TEXT_NODE){
+
+          if(node.nodeValue.indexOf(string)) {
+            return node.nodeValue.indexOf(string);
+          }
+        }
+      }
+    }
+
+    console.log(findNodeText(document.body, "ello"));
+
+  </script>
+
+</html>

@@ -113,7 +113,77 @@
 
         // console.log(Object.getPrototypeOf(["hello", "lol", 123]));
 
-        for(let i of [{a: "asa", b: "asa"}, {a: "asq", b: "ass"}]) console.log(i);
+        // for(let i of [{a: "asa", b: "asa"}, {a: "asq", b: "ass"}]) console.log(i);
+
+        // let route = [];
+        // let place = "hello";
+        // route.concat(place);
+        // console.log(route);
+
+        /* function mulParamsSameName(name1, name2, name3, name1){
+          "use strict";
+          return name1;
+        }
+
+        console.log(mulParamsSameName("bharg", "gib", "dub", "bhargava")); */
+
+        /* console.log(/abc/.test("sdabdabc"));
+        console.log(/[0-9]/.test("in 1990"));
+        let notBinary = /[^01]/;
+        console.log(notBinary.test("01001101101010"));
+        console.log(notBinary.test("01101010101204")); */
+
+        /*let quotedText = /('([\d]*)')('([\w]*)')/;
+        console.log(quotedText.exec("she said '123' 'hello' 12345"));*/
+
+        // console.log("Kunchanapalli, Bhargava\nWick, John\nAnderson, Mr.".replace(/(\w+), (\w+)/g, "$2 $1"));
+
+      /*  let stock = "1 carrot, 2 onions, 3 radishes";
+
+        function minusOne(match, amount, unit){
+          amount = Number(amount) - 1;
+
+          if(amount == 1){
+            unit = unit.slice(0, unit.length-1);
+          }
+          else if(amount == 0) {
+            if(unit[unit.length-1]=='s'){}
+            else unit = unit+'s';
+            amount = "no";
+          }
+
+
+          return amount+" "+unit;
+        }
+
+        console.log(stock.replace(/(\d+) (\w+)/g, minusOne));*/
+
+        /* let sticky = /xyz/y;
+        sticky.lastIndex = 4
+        console.log(sticky.exec("abc xyz")); */
+
+        /*let i=0, res = {name: "john"};
+
+        while(i<3){
+          console.log(res);
+          res = {name: "bhrgv"};
+          console.log(res);
+          i++;
+        }*/
+
+
+        // function parseINI(string){
+        //
+        // }
+        //
+
+       let re = /quick\s(brown).+?(jumps)/ig;
+       let res = re.exec("The Quick Brown Fox jumps over the lazy dog");
+
+       console.log(res, res[0], res[1]);
+
+
+
 
     </script>
   </head>

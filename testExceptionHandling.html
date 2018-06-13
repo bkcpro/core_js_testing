@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+
+      class InputError extends Error {}
+
+      function promptDirection(question){
+        let dir = prompt(question);
+
+        if(dir == "left") return "L";
+        if(dir == "right") return "R";
+        throw new InputError("invalid direction "+dir);
+      }
+
+
+      for(;;){
+        try{
+          let direction = promptDirection("Where are you heading?");
+          console.log("You are heading ", direction);
+          break;
+        }
+
+        catch(e){
+          if(e instanceof InputError){
+            console.log("Not a valid direction, try again");
+            break;
+          }
+          else{
+            throw e;
+          }
+        }
+
+      }
+
+
+
+    </script>
+
+
+  </head>
+  <body>
+
+  </body>
+</html>
