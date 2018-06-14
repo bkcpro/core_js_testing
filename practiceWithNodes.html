@@ -6,17 +6,40 @@
   </head>
   <body>
 
-    <p>
-      <a href="www.google.com"> This link</a>
-      <span> links to Google </span>
+
+    <p id="quote">
+      No book ever blah blah...
+    </p>
+
+    <p data-classified="secret">
+      Launch code is 000000
+    </p>
+
+    <p data-classified="unclassified">
+      I have two feet
+    </p>
 
   </body>
 
   <script type="text/javascript">
 
+      function elt(type, ...children){
+        let node = document.createElement(type);
+        for(let child of children){
+          if(typeof child != "string") node.appendChild(child);
+          else node.appendChild(document.createTextNode(child));
+        }
+        return node;
+      }
 
-    let link = document.body.getElementsByTagName("a")[0];
-    console.log(link.href);
+      document.getElementById("quote").appendChild(elt("footer", "-", elt("strong", "Bhargava"), ", preface to second edition of ", elt("em", "The Dungeons and Dragons"), ", 1990"));
+
+      let paras = document.getElementsByTagName("p");
+
+      for(let para of Array.from(paras)){
+        if(para.getAttribute("data-classified") == "secret") para.remove();
+      }
+
 
   </script>
 </html>
